@@ -18,25 +18,25 @@ for line in sys.stdin:
 
     # Séparer la clé (client) et la valeur (Objet, Quantité, Fidélité)
     client, value = line.split('\t')
-    objet, quantite, fidelite = value.split(',')
+    lbobj, qty, fidelite = value.split(',')
 
-    quantite = int(quantite)
+    quantite = int(qty)
     fidelite = int(fidelite)
 
     # Accumuler les quantités et fidélités totales pour chaque client
     clients[client]['quantite_totale'] += quantite
     clients[client]['fidelite_totale'] += fidelite
-    clients[client]['objets'][objet] += quantite  # Stocker tous les objets et leurs quantités
+    clients[client]['objets'][lbobj] += quantite  # Stocker tous les objets et leurs quantités
 
 # Obtenir les 10 clients les plus fidèles
 top_clients = get_top_clients(clients)
-
+#nomcli, prenomcli, villecli, cpcli, codobj, qty, points, lbobj
 # Exporter les résultats dans un fichier Excel
 data = []
 for client, info in top_clients:
-    nom, prenom, ville, departement = client.split(',')
-    for objet, quantite in info['objets'].items():
-        data.append([nom, prenom, ville, departement, objet, quantite, info['fidelite_totale']])
+    nomcli, prenomcli, villecli, dpt = client.split(',')
+    for objet, qty in info['objets'].items():
+        data.append([nomcli, prenomcli, villecli, dpt, lbobj, qty, info['fidelite_totale']])
 
 # Créer un DataFrame Pandas
 df = pd.DataFrame(data, columns=['Nom', 'Prénom', 'Ville', 'Département', 'Objet', 'Quantité', 'Fidélité totale'])
@@ -46,16 +46,16 @@ df.to_excel('top_clients_fideles.xlsx', index=False)
 
 # Générer des graphiques en PDF pour les 10 clients
 for client, info in top_clients:
-    nom, prenom, ville, departement = client.split(',')
+    nomcli, prenomcli, ville, departement = client.split(',')
     objets = info['objets']
 
     # Créer un graphique en camembert (% des objets commandés par client)
     plt.figure(figsize=(6, 6))
     plt.pie(objets.values(), labels=objets.keys(), autopct='%1.1f%%', startangle=140)
-    plt.title(f"Répartition des objets commandés pour {nom} {prenom}")
+    plt.title(f"Répartition des objets commandés pour {nomcli} {prenomcli}")
 
     # Sauvegarder chaque graphique dans un fichier PDF distinct
-    plt.savefig(f"{nom}_{prenom}_repartition_objets.pdf")
+    plt.savefig(f"{nomcli}_{prenomcli}_repartition_objets.pdf")
     plt.close()
 
 print("Exportation Excel et graphiques PDF terminés.")
