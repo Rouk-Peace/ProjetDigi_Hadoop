@@ -18,10 +18,10 @@ for line in sys.stdin:
 
     # Séparer la clé (client) et la valeur (Objet, Quantité, Fidélité)
     client, value = line.split('\t')
-    lbobj, qty, fidelite = value.split(',')
+    lbobj, qty, points = value.split(',')
 
     quantite = int(qty)
-    fidelite = int(fidelite)
+    fidelite = int(points)
 
     # Accumuler les quantités et fidélités totales pour chaque client
     clients[client]['quantite_totale'] += quantite
@@ -35,7 +35,7 @@ top_clients = get_top_clients(clients)
 data = []
 for client, info in top_clients:
     nomcli, prenomcli, villecli, dpt = client.split(',')
-    for objet, qty in info['objets'].items():
+    for lbobj, qty in info['objets'].items():
         data.append([nomcli, prenomcli, villecli, dpt, lbobj, qty, info['fidelite_totale']])
 
 # Créer un DataFrame Pandas
@@ -46,7 +46,7 @@ df.to_excel('top_clients_fideles.xlsx', index=False)
 
 # Générer des graphiques en PDF pour les 10 clients
 for client, info in top_clients:
-    nomcli, prenomcli, ville, departement = client.split(',')
+    nomcli, prenomcli, villecli, dpt = client.split(',')
     objets = info['objets']
 
     # Créer un graphique en camembert (% des objets commandés par client)
