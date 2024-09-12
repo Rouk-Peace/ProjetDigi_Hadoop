@@ -68,3 +68,4 @@ for columns in reader:
     else:
         sys.stderr.write("Ignored due to filter conditions: %s\n" % str(columns))
 
+
