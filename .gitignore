@@ -1,0 +1,18 @@
+# Ignorer les fichiers de configuration IDE
+.idea/
+*.iml
+
+# Ignorer les fichiers Python compilés
+__pycache__/
+*.py[cod]
+
+# Ignorer les environnements virtuels
+venv/
+env/
+
+# Ignorer les fichiers log
+*.log
+
+# Ignorer les fichiers de configuration OS
+.DS_Store
+Thumbs.db
