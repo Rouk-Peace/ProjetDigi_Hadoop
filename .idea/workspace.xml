@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93ca8d46-d8d8-4cd4-883e-2d96a9a90373" name="Changes" comment="" />
+    <list default="true" id="93ca8d46-d8d8-4cd4-883e-2d96a9a90373" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/ProjetDigi_Hadoop.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recuder_projet.py" beforeDir="false" afterPath="$PROJECT_DIR$/recuder_projet.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
