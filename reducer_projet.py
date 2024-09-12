@@ -18,7 +18,7 @@ for line in sys.stdin:
 
     # Séparer la clé (client) et la valeur (Objet, Quantité, Fidélité)
     client, value = line.split('\t')
-    lbobj, qty, points = value.split(',')
+    ville, dpt, lbobj, qty, points = value.split(',')
 
     quantite = int(qty)
     fidelite = int(points)
