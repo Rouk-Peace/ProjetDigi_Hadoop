@@ -1,6 +1,7 @@
 # Ignorer les fichiers de configuration IDE
 .idea/
 *.iml
+*.xml
 
 # Ignorer les fichiers Python compilés
 __pycache__/
