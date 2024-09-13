@@ -3,9 +3,11 @@ import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 from collections import defaultdict
+from matplotlib.backends.backend_pdf import PdfPages
 
 # Dictionnaire pour stocker les informations par client
-clients = defaultdict(lambda: {'quantite_totale': 0, 'fidelite_totale': 0, 'objets': defaultdict(int)})
+
+clients = defaultdict(lambda: {'totalPoint': 0, 'objets': []})
 
 # Fonction pour afficher les 10 meilleurs clients
 def get_top_clients(clients):
@@ -18,15 +20,22 @@ for line in sys.stdin:
 
     # Séparer la clé (client) et la valeur (Objet, Quantité, Fidélité)
     client, value = line.split('\t')
-    lbobj, qty, points = value.split(',')
+
+    dpt, villecli, lbobj, qte, points = value.split(',')
+
 
     quantite = int(qty)
     fidelite = int(points)
 
     # Accumuler les quantités et fidélités totales pour chaque client
-    clients[client]['quantite_totale'] += quantite
-    clients[client]['fidelite_totale'] += fidelite
-    clients[client]['objets'][lbobj] += quantite  # Stocker tous les objets et leurs quantités
+
+    totalPoint = quantite * fidelite
+    clients[client]['totalPoint'] += totalPoint
+    clients[client]['Objets'].append((dpt,villecli, lbobj, qte, points))
+    #clients[client]['fidelite_totale'] += fidelite
+    #clients[client]['objets'][lbobj] += quantite  # Stocker tous les objets et leurs quantités
+
+
 
 # Obtenir les 10 clients les plus fidèles
 top_clients = get_top_clients(clients)
@@ -34,9 +43,12 @@ top_clients = get_top_clients(clients)
 # Exporter les résultats dans un fichier Excel
 data = []
 for client, info in top_clients:
-    nomcli, prenomcli, villecli, dpt = client.split(',')
-    for lbobj, qty in info['objets'].items():
-        data.append([nomcli, prenomcli, villecli, dpt, lbobj, qty, info['fidelite_totale']])
+
+    nomcli, prenomcli = client.split(' ')
+    for objet in info['objets']:
+        villecli,dpt, lbobj, qte, points = objet
+        data.append([nomcli, prenomcli, villecli, dpt, lbobj, qte, info['totalPoint']])
+
 
 # Créer un DataFrame Pandas
 df = pd.DataFrame(data, columns=['Nom', 'Prénom', 'Ville', 'Département', 'Objet', 'Quantité', 'Fidélité totale'])
@@ -48,14 +60,19 @@ df.to_excel('top_clients_fideles.xlsx', index=False)
 for client, info in top_clients:
     nomcli, prenomcli, villecli, dpt = client.split(',')
     objets = info['objets']
+    output_pdf_file="/datavolume1/%s-%s.pdf"%(nomcli,prenomcli)
 
     # Créer un graphique en camembert (% des objets commandés par client)
     plt.figure(figsize=(6, 6))
     plt.pie(objets.values(), labels=objets.keys(), autopct='%1.1f%%', startangle=140)
-    plt.title(f"Répartition des objets commandés pour {nomcli} {prenomcli}")
+    plt.title("Répartition des objets commandés pour %s-%s"%(nomcli,prenomcli))
 
     # Sauvegarder chaque graphique dans un fichier PDF distinct
-    plt.savefig(f"{nomcli}_{prenomcli}_repartition_objets.pdf")
+
+    #plt.savefig(f"/datavolume1/{nomcli}_{prenomcli}_repartition.pdf")
+    with PdfPages(output_pdf_file) as pdf:
+        pdf.savefig()
+
     plt.close()
 
 print("Exportation Excel et graphiques PDF terminés.")
