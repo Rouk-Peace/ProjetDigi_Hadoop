@@ -8,6 +8,7 @@ Ce projet contient des scripts et des configurations pour l'installation et la g
 projet_fromagerie
     ├── /hbase
     │   ├── hbase_c.py  # Script d'importation des données dans HBase
+        ├── hbase_complet.py  # Script d'importation des données dans HBase
     ├── /data
     │   └── dataw_fro03_mini_1000.csv # Fichier de données à importer pour les test
         └── dataw_fro03.csv # Fichier de données à importer (pour le projet)
