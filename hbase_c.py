@@ -13,7 +13,11 @@ def is_valid_date(date_str):
 
 # Fonction pour remplacer les valeurs nulles ou vides par une chaîne vide
 def replace_null_or_empty(value):
-    return value if value and value.strip() else ""
+    if value == 'NULL':
+        return ""
+    if value is None:
+        return ""
+    return value if value else ""
 
 # Connexion à HBase
 connection = happybase.Connection('127.0.0.1', 9090)
@@ -21,24 +25,24 @@ connection.open()
 
 # Supprimer la table et la recréer
 try:
-    connection.disable_table('SuperFromagerie')
-    connection.delete_table('SuperFromagerie')
-    print('La table SuperFromagerie est supprimée')
+    connection.disable_table('DigiFromagerie')
+    connection.delete_table('DigiFromagerie')
+    print('La table DigiFromagerie est supprimée')
 except Exception as e:
     pass
 
 try:
     madesc = {'cf': dict()}  # Création de la famille 'cf'
-    connection.create_table('SuperFromagerie', madesc)
-    print("La table SuperFromagerie est créée")
+    connection.create_table('DigiFromagerie', madesc)
+    print("La table DigiFromagerie est créée")
 except Exception as e:
     pass
 
 # Positionnement sur la table 'SuperFromagerie'
-table = connection.table('SuperFromagerie')
+table = connection.table('DigiFromagerie')
 
-# Lecture du fichier CSV et importation en lots
-with open('dataw_fro03_mini_1000.csv', mode='r') as csvfile:
+# Lecture du fichier CSV et importation en lots avec encodage UTF-8
+with open('dataw_fro03_mini_1000.csv', mode='r', encoding='utf-8') as csvfile:  # Spécifie l'encodage utf-8 ici
     print('1')
     reader = csv.reader(csvfile)
     row_id = 1
