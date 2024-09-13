@@ -1,4 +1,4 @@
-﻿# Projet 3 BIG DATA SuperFromagerie
+﻿# Projet 3 BIG DATA DigiFromagerie
 
 Ce projet contient des scripts et des configurations pour l'installation et la gestion de HBase et Hadoop, ainsi que des outils pour l'importation de données et la visualisation dans Power BI.
 
