@@ -9,7 +9,8 @@ projet_fromagerie
     ├── /hbase
     │   ├── hbase_c.py  # Script d'importation des données dans HBase
     ├── /data
-    │   └── dataw_fro03_mini_1000.csv # Fichier de données à importer
+    │   └── dataw_fro03_mini_1000.csv # Fichier de données à importer pour les test
+        └── dataw_fro03.csv # Fichier de données à importer (pour le projet)
     ├── /powerbi
     │   ├── dashboard.pbix      # Fichier Power BI pour visualisation
     └── /hadoop
