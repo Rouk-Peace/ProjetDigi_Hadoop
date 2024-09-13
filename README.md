@@ -7,12 +7,11 @@ Ce projet contient des scripts et des configurations pour l'installation et la g
 ```
 projet_fromagerie
     ├── /hbase
-    │   ├── import_to_hbase.py  # Script d'importation des données dans HBase
+    │   ├── hbase_c.py  # Script d'importation des données dans HBase
     ├── /data
-    │   └── data.csv            # Fichier de données à importer
+    │   └── dataw_fro03_mini_1000.csv # Fichier de données à importer
     ├── /powerbi
     │   ├── dashboard.pbix      # Fichier Power BI pour visualisation
-    │   └── dax_formules.txt    # Formules DAX utilisées dans Power BI
     └── /hadoop
         ├── /map
         │   └── mapper.py       # Script de mappage pour Hadoop
@@ -40,7 +39,7 @@ Avant de lancer le script d'importation, assurez-vous que le fichier de configur
 
 ## Fichier CSV
 
-Le fichier `data.csv` dans le répertoire `/data` doit contenir les colonnes suivantes pour être compatible avec le script d'importation :
+Le fichier `dataw_fro03_mini_1000.csv` dans le répertoire `/data` doit contenir les colonnes suivantes pour être compatible avec le script d'importation :
 
 - `id` : Identifiant unique pour chaque enregistrement.
 - `date_column` : Colonne contenant les dates qui seront vérifiées.
@@ -60,7 +59,7 @@ Le script `import_to_hbase.py` situé dans le répertoire `/hbase` gère l'impor
 
 2. **Exécuter le script** :
    ```bash
-   python hbase/import_to_hbase.py
+   python hbase/hbase_c.py
    ```
 
 ### Détails du Script
@@ -84,7 +83,6 @@ Assurez-vous que Hadoop est configuré correctement avant d'exécuter ces script
 
 Le fichier Power BI `dashboard.pbix` dans le répertoire `/powerbi` contient des visualisations basées sur les données importées dans HBase.
 
-- **Formules DAX** : Les formules DAX utilisées dans les visualisations sont stockées dans `dax_formules.txt` et peuvent être réutilisées ou modifiées pour vos besoins spécifiques.
 
 ## Contribution
 
