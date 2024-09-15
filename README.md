@@ -12,8 +12,6 @@ projet_fromagerie
     ├── /data
     │   └── dataw_fro03.csv            # Fichier de données à importer pour le final 
         └── dataw_fro03_mini_1000.csv  # Fichier de données à importer pour le test
-    ├── /powerbi
-    │   ├── dashboard.pbix      # Fichier Power BI pour visualisation
     └── /hadoop
         ├── /map
         │   └── mapper.py       # Script de mappage pour Hadoop
