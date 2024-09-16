@@ -9,6 +9,7 @@ projet_fromagerie
     ├── /hbase
     │   ├── hbase_c.py  # Script d'importation des données dans HBase
         ├── hbase_finale.py  # Script d'importation des données dans HBase
+        ├── hbase_extract_csv.py  # Script d'importation des données dans HBase
     ├── /data
     │   └── dataw_fro03.csv            # Fichier de données à importer pour le final 
         └── dataw_fro03_mini_1000.csv  # Fichier de données à importer pour le test
