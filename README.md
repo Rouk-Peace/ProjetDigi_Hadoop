@@ -31,7 +31,7 @@ Avant d'utiliser les scripts, assurez-vous que les éléments suivants sont inst
 - **Hadoop HDFS** : Suivez les instructions dans le répertoire `/hadoop` pour installer et configurer Hadoop.
 - **Python 3** : Assurez-vous que Python 3 est installé sur votre machine.
 - **FileZilla** : pour le transfert de fichiers
-- **VM  avec Docker et Hadoop HDFS configurés
+- **VM**  avec Docker et Hadoop HDFS configurés
 - **Bibliothèques Python** : Installez les bibliothèques nécessaires avec la commande suivante :
   ```bash
   pip install pandas happybase
