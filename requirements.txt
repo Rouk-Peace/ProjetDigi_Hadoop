@@ -2,8 +2,7 @@ python ~=3.5.0
 happybase~=1.1.0
 pandas~=2.0.3
 matplotlib~=3.9.2
-collection ~=.0.1.6
+collection~=.0.1.6
 datetime~=7.0.3
-csv
-system
-PyPDF2==3.0.1
+csv~=2.3
+PyPDF2~=1.26.0
