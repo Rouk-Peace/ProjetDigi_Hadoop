@@ -54,6 +54,10 @@ for columns in reader:
         #sys.stderr.write("Ignored due to invalid points: %s\n" % points)
         continue
 
+    # Remplacer les points négatifs par 0
+    if points < 0:
+        points = 0
+
     # Extraire l'année de la date formatée
     try:
         year = int(date.split('-')[0])
