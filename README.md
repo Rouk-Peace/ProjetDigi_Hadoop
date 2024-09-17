@@ -1,7 +1,8 @@
 # Projet 3 BIG DATA BigFromagerie
 
-Ce projet utilise Hadoop MapReduce, Hbase et Power BI pour traiter et analyser les données de commandes clients d'une fromagerie. Le but est de filtrer les données, calculer la fidélité des clients, et générer des rapports exploitables pour la visualisation. 
-Le projet s'exécute dans un ecosystème via une VM Hidora, avec des outils comme PuTTY et FileZilla pour la gestion des fichiers et connexions, ainsi que Docker pour l'architecture distribuée. Il contient des scripts et des configurations pour l'installation et la gestion de HBase et Hadoop HDFS, ainsi que des outils pour l'importation de données et la visualisation dans Power BI.
+Ce projet utilise Hadoop MapReduce, Hbase et Power BI pour traiter et analyser les données de commandes clients d'une fromagerie avec leur points fidélité. Le but est de filtrer les données, calculer la fidélité des clients, et générer des rapports exploitables pour la visualisation. 
+Le projet s'exécute dans un ecosystème Hadoop via une VM Hidora, avec des outils comme PuTTY et FileZilla pour la gestion des fichiers et connexions, ainsi que Docker pour l'architecture distribuée. Il contient des scripts et des configurations pour l'installation et la gestion de HBase et Hadoop HDFS, ainsi que des outils pour l'importation de données et la visualisation dans Power BI.
+
 ## Structure du Projet
 
 ```
@@ -19,6 +20,7 @@ projet_fromagerie
         └── /reducer
             └── reducer.py      # Script de réduction pour Hadoop
             job.sh              # Script pour exécuter le job Hadoop et gérer les fichiers HDFS
+
 ```
 
 ## Prérequis
@@ -26,7 +28,7 @@ projet_fromagerie
 Avant d'utiliser les scripts, assurez-vous que les éléments suivants sont installés et configurés :
 
 - **HBase** : Suivez les instructions dans le répertoire `/hbase` pour installer et configurer HBase.
-- **Hadoop HDFS** : Suivez les instructions dans le répertoire `/hadoop HDFS` pour installer et configurer Hadoop.
+- **Hadoop HDFS** : Suivez les instructions dans le répertoire `/hadoop` pour installer et configurer Hadoop.
 - **Python 3** : Assurez-vous que Python 3 est installé sur votre machine.
 - **FileZilla** : pour le transfert de fichiers
 - **VM  avec Docker et Hadoop HDFS configurés
@@ -72,22 +74,23 @@ Le script `import_to_hbase.py` situé dans le répertoire `/hbase` gère l'impor
 - **Filtrage des Données** : Les lignes contenant des valeurs NULL ou des dates invalides sont automatiquement exclues de l'importation.
 - **Insertion dans HBase** : Les données valides sont insérées dans HBase, en utilisant l'`id` comme clé primaire.
 
-## MapReduce avec Hadoop
+## MapReduce avec Hadoop HDFS
 
 Le répertoire `/hadoop` contient des scripts pour traiter les données via Hadoop MapReduce.
+
 **Étapes d'installation et d'exécution**
+
+Assurez-vous que Hadoop est configuré correctement avant d'exécuter ces scripts. 
 Transfert des fichiers vers la VM : Utilisez FileZilla pour transférer les fichiers mapper_projet.py, reducer_projet.py, dataw_fro03.csv, et job.sh vers la VM.
 
-Connexion à la VM : Utilisez PuTTY pour vous connecter à votre VM  et accéder au système de fichiers HDFS orchestré via docker.
+Connexion à la VM : Utilisez PuTTY ou un terminal pour vous connecter à votre VM  et accéder au système de fichiers HDFS orchestré via docker.
 Accéder à l'OS master-Hadoop: Copié les fichiers dans le master
-Exécution du script job.sh : exécutez le script job.sh pour gérer le workflow complet :
-
+Exécution du job.sh : exécutez le script job.sh pour gérer le workflow complet :
+- **streaming Hadoop** : hadoop-streaming-2.7.2.jar 
 - **Mapper** : Le script `mapper.py` est utilisé pour mapper les données. Le Mapper traite les données, extrait et filtre les informations pertinentes (clients, objets, points de fidélité, etc.). Il génère des paires clé-valeur pour chaque client."
 - **Reducer** : Le script `reducer.py` agrège les données par client et calcule les résultats finaux (somme des points de fidélité, objets commandés).
 
-### Exécution de Hadoop
 
-Assurez-vous que Hadoop est configuré correctement avant d'exécuter ces scripts. Vous pouvez exécuter une tâche MapReduce en utilisant les commandes Hadoop adaptées, en spécifiant les scripts de mappage et de réduction.
 
 ## Visualisation avec Power BI
 
