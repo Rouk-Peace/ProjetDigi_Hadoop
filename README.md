@@ -28,15 +28,13 @@ projet_fromagerie
 
 Avant d'utiliser les scripts, assurez-vous que les éléments suivants sont installés et configurés :
 
-- **HBase** : Suivez les instructions dans le répertoire `/hbase` pour installer et configurer HBase.
-- **Hadoop HDFS** : Suivez les instructions dans le répertoire `/hadoop` pour installer et configurer Hadoop.
+- **HBase** : Suivez les instructions dans le répertoire `/Hbase_PowerBI` pour installer et configurer HBase.
+- **Hadoop HDFS** : Suivez les instructions dans le répertoire `/HDFS_MapReduce` pour installer et configurer Hadoop.
 - **Python 3** : Assurez-vous que Python 3 est installé sur votre machine.
 - **FileZilla** : pour le transfert de fichiers
 - **VM**  avec Docker et Hadoop HDFS configurés
-- **Bibliothèques Python** : Installez les bibliothèques nécessaires avec la commande suivante :
-  ```bash
-  pip install pandas happybase
-  ```
+- **Bibliothèques Python** : Installez les bibliothèques nécessaires dans le `requirements.txt` 
+ 
 
 ## Configuration HBase
 
@@ -46,7 +44,7 @@ Avant de lancer le script d'importation, assurez-vous que le fichier de configur
 
 ## Fichier CSV
 
-Le fichier `dataw_fro03_mini_1000.csv ` dans le répertoire `/dataw_fro03_mini_1000.csv ` doit contenir les colonnes suivantes pour être compatible avec le script d'importation :
+Le fichier `dataw_fro03_mini_1000.csv ` et `/dataw_fro03_mini_1000.csv ` dans le répertoire `/Data` doit contenir les colonnes suivantes pour être compatible avec le script d'importation :
 
 - `id` : Identifiant unique pour chaque enregistrement.
 - `date_column` : Colonne contenant les dates qui seront vérifiées.
@@ -54,7 +52,7 @@ Le fichier `dataw_fro03_mini_1000.csv ` dans le répertoire `/dataw_fro03_mini_1
 
 ## Script d'Importation
 
-Le script `import_to_hbase.py` situé dans le répertoire `/hbase` gère l'importation des données dans HBase. Ce script vérifie et nettoie les données avant de les insérer dans la base.
+Le script `import_to_hbase.py` situé dans le répertoire `/Hbase_PowerBI` gère l'importation des données dans HBase. Ce script vérifie et nettoie les données avant de les insérer dans la base.
 
 ### Utilisation du Script
 
@@ -77,7 +75,7 @@ Le script `import_to_hbase.py` situé dans le répertoire `/hbase` gère l'impor
 
 ## MapReduce avec Hadoop HDFS
 
-Le répertoire `/hadoop` contient des scripts pour traiter les données via Hadoop MapReduce.
+Le répertoire `/HDFS_MapReduce` contient des scripts pour traiter les données via Hadoop MapReduce.
 
 **Étapes d'installation et d'exécution**
 
@@ -95,7 +93,7 @@ Exécution du job.sh : exécutez le script job.sh pour gérer le workflow comple
 
 ## Visualisation avec Power BI
 
-Le fichier Power BI `dashboard.pbix` dans le répertoire `/powerbi` contient des visualisations basées sur les données importées dans HBase.
+Le fichier Power BI `dashboard.pbix` dans le répertoire `/Hbase_PowerBI` contient des visualisations basées sur les données importées dans HBase.
 
 
 ## Contribution
