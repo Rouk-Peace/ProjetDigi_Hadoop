@@ -8,10 +8,12 @@ from matplotlib.backends.backend_pdf import PdfPages
 # Dictionnaire pour stocker les informations par client
 clients = defaultdict(lambda: {'totalPoint': 0, 'objets': defaultdict(int)})
 
+
 # Fonction pour afficher les 10 meilleurs clients
 def get_top_clients(clients):
     # Trier les clients par fidélité décroissante et sélectionner les 10 premiers
     return sorted(clients.items(), key=lambda x: x[1]['totalPoint'], reverse=True)[:10]
+
 
 # Parcourir les données ligne par ligne depuis le mapper
 for line in sys.stdin:
@@ -36,7 +38,12 @@ top_clients = get_top_clients(clients)
 data = []
 for client, info in top_clients:
     nomcli, prenomcli = client.split(' ')
-    for lbobj, qte in info['objets'].items():
+
+    # Filtrer les objets pour exclure "points bonus fidelite", "carte publicitaire", et "flyer"
+    objets_filtres = {lbobj: qte for lbobj, qte in info['objets'].items() if
+                      lbobj not in ["points bonus fidelite", "carte publicitaire", "flyer", "points flyer"]}
+
+    for lbobj, qte in objets_filtres.items():
         data.append([nomcli, prenomcli, dpt, villecli, lbobj, qte, info['totalPoint']])
 
 # Créer un DataFrame Pandas
@@ -50,8 +57,9 @@ for client, info in top_clients:
     nomcli, prenomcli = client.split(' ')
     objets = info['objets']
 
-    # Filtrer les objets pour exclure "points bonus fidélite", "carte publicitaire", et "flyer"
-    objets_filtres = {k: v for k, v in objets.items() if k not in ["points bonus fidélite", "carte publicitaire", "flyer"]}
+    # Filtrer les objets pour exclure "points bonus fidelite", "carte publicitaire", et "flyer"
+    objets_filtres = {k: v for k, v in objets.items() if
+                      k not in ["points bonus fidelite", "carte publicitaire", "flyer", "points flyer"]}
 
     output_pdf_file = "/datavolume1/%s-%s.pdf" % (nomcli, prenomcli)
 
